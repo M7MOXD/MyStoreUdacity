@@ -5,5 +5,7 @@
   <p>{{ product.name }}</p>
   <p>${{ product.price }}</p>
   <input type="number" min="1" class="select-input" [(ngModel)]="quantity" />
-  <button class="btn btn-primary" (click)="addToCart()">Add To Cart</button>
+  <button class="btn btn-primary" (click)="addToCart.emit({product, quantity})">
+    Add To Cart
+  </button>
 </div>

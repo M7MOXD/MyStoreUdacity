@@ -34,7 +34,17 @@
           required
           minlength="3"
           [(ngModel)]="name"
+          (ngModelChange)="validate()"
+          #xName="ngModel"
         />
+        <div *ngIf="xName.invalid && xName.touched">
+          <p class="text-danger" *ngIf="xName.errors?.['required']">
+            {{ errorMsg.name }}
+          </p>
+          <p class="text-danger" *ngIf="xName.errors?.['minlength']">
+            {{ errorMsg.name }}
+          </p>
+        </div>
       </div>
       <div>
         <label for="address" class="form-label">Address</label>
@@ -47,7 +57,17 @@
           required
           minlength="6"
           [(ngModel)]="address"
+          (ngModelChange)="validate()"
+          #xAddress="ngModel"
         />
+        <div *ngIf="xAddress.invalid && xAddress.touched">
+          <p class="text-danger" *ngIf="xAddress.errors?.['required']">
+            {{ errorMsg.address }}
+          </p>
+          <p class="text-danger" *ngIf="xAddress.errors?.['minlength']">
+            {{ errorMsg.address }}
+          </p>
+        </div>
       </div>
       <div>
         <label for="credit" class="form-label">Credit Card Number</label>
@@ -61,7 +81,17 @@
           minlength="16"
           maxlength="16"
           [(ngModel)]="credit"
+          (ngModelChange)="validate()"
+          #xCredit="ngModel"
         />
+        <div *ngIf="xCredit.invalid && xCredit.touched">
+          <p class="text-danger" *ngIf="xCredit.errors?.['required']">
+            {{ errorMsg.credit }}
+          </p>
+          <p class="text-danger" *ngIf="xCredit.errors?.['minlength']">
+            {{ errorMsg.credit }}
+          </p>
+        </div>
         <p>We Will Never Store Your Information</p>
       </div>
       <input

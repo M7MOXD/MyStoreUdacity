@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   name: string = '';
   address: string = '';
   credit: string = '';
+  errorMsg: any = {};
   addToCart(prod: any, e: any) {
     this.productService.addToCart(prod, e.target.value);
     this.cart = this.productService.cart;
@@ -29,6 +30,24 @@ export class CartComponent implements OnInit {
       address: this.address,
       totalPrice: this.totalPrice,
     });
+  }
+  validate() {
+    if (!this.name) {
+      this.errorMsg.name = 'Please Enter Your Name';
+    } else if (this.name.length < 3) {
+      this.errorMsg.name = 'Minimum Length 3 Characters';
+    }
+    if (!this.address) {
+      this.errorMsg.address = 'Please Enter Your Address';
+    } else if (this.address.length < 3) {
+      this.errorMsg.address = 'Minimum Length 6 Characters';
+    }
+    if (!this.credit) {
+      this.errorMsg.credit = 'Please Enter Your Credit Card Number';
+    } else if (this.credit.length != 16) {
+      this.errorMsg.credit =
+        'Minimum Length 16 Characters && Maximun Length 16 Characters';
+    }
   }
   ngOnInit(): void {
     this.cart.forEach((x) => {

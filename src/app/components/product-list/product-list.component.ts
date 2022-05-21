@@ -8,10 +8,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  constructor(private productHTTP: ProductService) {}
+  constructor(private productService: ProductService) {}
   products: Product[] = [];
+  addToCart(e: any) {
+    this.productService.addToCart(e.product, e.quantity);
+  }
   ngOnInit(): void {
-    this.productHTTP.getProducts().subscribe((res) => {
+    this.productService.getProducts().subscribe((res) => {
       this.products = res;
     });
   }

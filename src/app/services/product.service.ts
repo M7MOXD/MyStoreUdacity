@@ -17,11 +17,14 @@ export class ProductService {
   addToCart(product: Product, quantity: number) {
     if (!this.cart.find((prod) => prod.id === product.id)) {
       this.cart.push({ ...product, quantity });
+      alert('Product Added To Cart');
     } else {
       if (quantity == 0) {
         this.cart = this.cart.filter((prod) => prod.id !== product.id);
+        alert('Product Removed From Cart');
       } else {
         this.cart.find((prod) => prod.id === product.id).quantity = quantity;
+        alert('Product Quantity Changed');
       }
     }
   }
