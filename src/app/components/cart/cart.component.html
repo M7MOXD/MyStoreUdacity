@@ -1,1 +1,75 @@
-<p>cart works!</p>
+<div class="empty-cart-message" *ngIf="cart.length == 0">
+  <h4>Cart is Empty!</h4>
+</div>
+<div class="cart-container" *ngIf="cart.length != 0">
+  <div>
+    <div class="cart-item" *ngFor="let cartItem of cart">
+      <img src="{{ cartItem.url }}" />
+      <div class="cart-item-details">
+        <h4>{{ cartItem.name }}</h4>
+        <p>${{ cartItem.price }}</p>
+        <label for="quantity">Amount:</label>
+        <input
+          id="quantity"
+          type="number"
+          min="0"
+          value="{{ cartItem.quantity }}"
+          class="number-input"
+          (change)="addToCart(cartItem, $event)"
+        />
+      </div>
+    </div>
+    <h3>Total: ${{ totalPrice }}</h3>
+  </div>
+  <div class="cart-panel">
+    <form #form="ngForm" class="form-margin" (ngSubmit)="submit()">
+      <div>
+        <label for="full-name" class="form-label">Full Name</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="full-name"
+          placeholder="(minimum 3 characters)"
+          required
+          minlength="3"
+          [(ngModel)]="name"
+        />
+      </div>
+      <div>
+        <label for="address" class="form-label">Address</label>
+        <input
+          name="address"
+          type="text"
+          class="form-control"
+          id="address"
+          placeholder="(minimum 6 characters)"
+          required
+          minlength="6"
+          [(ngModel)]="address"
+        />
+      </div>
+      <div>
+        <label for="credit" class="form-label">Credit Card Number</label>
+        <input
+          name="credit"
+          type="text"
+          class="form-control"
+          id="credit"
+          placeholder="(16-Digit Number)"
+          required
+          minlength="16"
+          maxlength="16"
+          [(ngModel)]="credit"
+        />
+        <p>We Will Never Store Your Information</p>
+      </div>
+      <input
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="form.invalid"
+        value="Submit"
+      />
+    </form>
+  </div>
+</div>

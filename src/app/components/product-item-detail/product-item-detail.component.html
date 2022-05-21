@@ -1,1 +1,18 @@
-<p>product-item-detail works!</p>
+<div class="detail-container">
+  <img src="{{ product.url }}" />
+  <div class="detail-item">
+    <h3>{{ product.name }}</h3>
+    <p>${{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    <input
+      type="number"
+      min="1"
+      class="select-input d-block"
+      [(ngModel)]="quantity"
+    />
+    <button class="btn btn-primary d-block" (click)="addToCart()">
+      Add To Cart
+    </button>
+    <a routerLink="/" class="back-link d-block">Back To Products List</a>
+  </div>
+</div>
